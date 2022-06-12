@@ -15,3 +15,6 @@ console.log(linkInterno.href);
 
 const animaisImg = document.querySelectorAll(".animais img");
 console.log(animaisImg[3]);
+
+console.log("hello word")
+
