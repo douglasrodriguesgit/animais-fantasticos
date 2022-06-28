@@ -1,20 +1,18 @@
-const animais = document.getElementById("animais");
-console.log(animais);
+const tabMenu = document.querySelectorAll(".js-tabmenu li");
+const tabContent = document.querySelectorAll(".js-tabcontent section");
+tabContent[0].classList.add("ativo");
 
-const gridSection = document.getElementsByClassName("grid-section");
-console.log(gridSection);
+if (tabMenu.length && tabContent.length) {
+  function activeTab(index) {
+    tabContent.forEach((section) => {
+      section.classList.remove("ativo");
+    });
+    tabContent[index].classList.add("ativo");
+  }
 
-const primeiraLi = document.querySelector("li");
-console.log(primeiraLi);
-
-const primeiraul = document.querySelector("ul");
-console.log(primeiraul);
-
-const linkInterno = document.querySelector('[href^="#"]');
-console.log(linkInterno.href);
-
-const animaisImg = document.querySelectorAll(".animais img");
-console.log(animaisImg[3]);
-
-console.log("hello word")
-
+  tabMenu.forEach((itemMenu, index) => {
+    itemMenu.addEventListener("click", () => {
+      activeTab(index);
+    });
+  });
+}
