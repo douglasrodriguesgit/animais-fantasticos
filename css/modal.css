@@ -35,8 +35,8 @@
   }
 }
 
-.ativo.modal{
- animation: modal .3s forwards;
+.ativo.modal {
+  animation: modal 0.3s forwards;
 }
 
 .fechar {
