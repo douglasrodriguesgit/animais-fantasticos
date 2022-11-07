@@ -6,7 +6,7 @@ export default function initAnimacaoNumeros() {
       const incremento = Math.floor(total / 100);
       let start = 0;
       const intervalo = setInterval(() => {
-        start = start + incremento;
+        start += incremento;
 
         item.innerText = start;
         if (start > total) {
@@ -17,13 +17,16 @@ export default function initAnimacaoNumeros() {
     });
   }
 
+  let observador; 
   function handleMutation(event) {
     if (event[0].target.classList.contains("ativo")) {
       observador.disconnect();
       animaNumeros();
     }
   }
+  observador = new MutationObserver(handleMutation);
   const alvoObservacao = document.querySelector(".numeros");
-  const observador = new MutationObserver(handleMutation);
   observador.observe(alvoObservacao, { attributes: true });
+
 }
+
