@@ -17,7 +17,7 @@ export default function initAnimacaoNumeros() {
     });
   }
 
-  let observador; 
+  let observador;
   function handleMutation(event) {
     if (event[0].target.classList.contains("ativo")) {
       observador.disconnect();
@@ -27,6 +27,4 @@ export default function initAnimacaoNumeros() {
   observador = new MutationObserver(handleMutation);
   const alvoObservacao = document.querySelector(".numeros");
   observador.observe(alvoObservacao, { attributes: true });
-
 }
-
