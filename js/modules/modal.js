@@ -1,24 +1,45 @@
-export default function initModal() {}
+export default class Modal {
+  constructor(botaoAbrir, botaoFechar, containerModal) {
+    this.botaoAbrir = document.querySelector(botaoAbrir);
+    this.botaoFechar = document.querySelector(botaoFechar);
+    this.containerModal = document.querySelector(containerModal);
 
-const botaoAbrir = document.querySelector("[data-modal='abrir']");
-const botaoFechar = document.querySelector("[data-modal='fechar']");
-const containerModal = document.querySelector("[data-modal='container']");
-
-function toggleModal(event) {
-  event.preventDefault();
-  containerModal.classList.toggle("ativo");
-}
-
-function cliqueForaModal(event) {
-  event.preventDefault();
-  if (event.target === this) {
-    toggleModal(event);
+    // bind this ao callback
+    // fazer referência ao objeto
+    // da classe
+    this.evenToggleModal = this.eventToggleModal.bind(this);
+    this.cliqueForaModal = this.cliqueForaModal.bind(this);
   }
-}
 
-if (botaoAbrir && botaoFechar && containerModal) {
-  botaoAbrir.addEventListener("click", toggleModal);
-  botaoFechar.addEventListener("click", toggleModal);
-  containerModal.addEventListener("click", cliqueForaModal);
+  // abre ou fecha o modal
+  toggleModal() {
+    this.containerModal.classList.toggle("ativo");
+  }
 
+  // adicona o evento de toggle ao modal
+  eventToggleModal(event) {
+    event.preventDefault();
+    this.toggleModal();
+  }
+
+  // fecha modal ao clicar do lado de fora
+  cliqueForaModal(event) {
+    if (event.target === this.containerModal) {
+      this.toggleModal();
+    }
+  }
+
+  // adiciona os eventos aos elementos do modal
+  addModalEvents() {
+    this.botaoAbrir.addEventListener("click", this.eventToggleModal);
+    this.botaoFechar.addEventListener("click", this.eventToggleModal);
+    this.containerModal.addEventListener("click", this.cliqueForaModal);
+  }
+
+  init() {
+    if (this.botaoAbrir && this.botaoFechar && this.containerModal) {
+      this.addModalEvents();
+    }
+    return this;
+  }
 }
