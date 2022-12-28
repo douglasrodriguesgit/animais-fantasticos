@@ -7,7 +7,7 @@ export default class Modal {
     // bind this ao callback
     // fazer referência ao objeto
     // da classe
-    this.evenToggleModal = this.eventToggleModal.bind(this);
+    this.eventToggleModal = this.eventToggleModal.bind(this);
     this.cliqueForaModal = this.cliqueForaModal.bind(this);
   }
 
